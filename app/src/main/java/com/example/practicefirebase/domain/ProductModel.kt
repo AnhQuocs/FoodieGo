@@ -1,8 +1,8 @@
 package com.example.practicefirebase.domain
 
-data class CakeModel(
+data class ProductModel(
     var Id: Int = 0,
-    var CategoryId: String = "",
+    var CategoryId: String? = null,
     var ImagePath: String = "",
     var Name: String = "",
     var Price: String = ""

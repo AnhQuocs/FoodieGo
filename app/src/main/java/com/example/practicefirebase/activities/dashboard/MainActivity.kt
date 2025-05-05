@@ -1,6 +1,7 @@
 package com.example.practicefirebase.activities.dashboard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -22,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.practicefirebase.R
 import com.example.practicefirebase.activities.dashboard.products.cakelist.CakeSection
 import com.example.practicefirebase.activities.dashboard.products.categories.CategorySection
-import com.example.practicefirebase.domain.CakeModel
+import com.example.practicefirebase.domain.ProductModel
 import com.example.practicefirebase.domain.CategoryModel
 import com.example.practicefirebase.search.Search
 import com.example.practicefirebase.viewmodel.DashboardViewModel
@@ -42,9 +43,10 @@ class MainActivity : ComponentActivity() {
 fun DashboardScreen() {
 
     val viewmodel = DashboardViewModel()
+    val categoryId by remember { mutableStateOf("0") }
 
     val category = remember { mutableStateListOf<CategoryModel>() }
-    val cake = remember { mutableStateListOf<CakeModel>() }
+    val cake = remember { mutableStateListOf<ProductModel>() }
 
     var showCategoryLoading by remember { mutableStateOf(true) }
     var showCakeLoading by remember { mutableStateOf(true) }

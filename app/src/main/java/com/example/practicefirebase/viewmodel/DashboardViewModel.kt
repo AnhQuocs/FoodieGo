@@ -1,7 +1,7 @@
 package com.example.practicefirebase.viewmodel
 
 import androidx.lifecycle.LiveData
-import com.example.practicefirebase.domain.CakeModel
+import com.example.practicefirebase.domain.ProductModel
 import com.example.practicefirebase.domain.CategoryModel
 import com.example.practicefirebase.repository.DashboardRepository
 
@@ -12,7 +12,7 @@ class DashboardViewModel {
         return repository.loadCategory()
     }
 
-    fun loadCake(): LiveData<MutableList<CakeModel>> {
+    fun loadCake(): LiveData<MutableList<ProductModel>> {
         return repository.loadCake()
     }
 }
