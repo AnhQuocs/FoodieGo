@@ -46,10 +46,10 @@ fun SliderSection() {
         HorizontalPager(
             count = sliderItemList.size,
             state = pagerState,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) {page ->
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().padding(horizontal = 6.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
