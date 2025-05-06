@@ -5,5 +5,6 @@ data class ProductModel(
     var CategoryId: String? = null,
     var ImagePath: String = "",
     var Name: String = "",
-    var Price: String = ""
+    var Price: String = "",
+    var Quantity: Int = 0
 )

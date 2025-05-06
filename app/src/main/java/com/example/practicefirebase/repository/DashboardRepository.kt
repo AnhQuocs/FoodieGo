@@ -47,7 +47,7 @@ class DashboardRepository {
 
                 for (childSnapshot in snapshot.children) {
                     val item = childSnapshot.getValue(ProductModel::class.java)
-                    if (item?.CategoryId == "0") {
+                    if (item?.CategoryId == "4") {
                         list.add(item)
                         Log.d("FirebaseDebug", "Item: ${item?.Name}")
                     }
@@ -64,8 +64,30 @@ class DashboardRepository {
         return listData
     }
 
-//    fun loadProductById(): LiveData<MutableList<ProductModel>> {
-//        val listData = MutableLiveData<MutableList<ProductModel>>()
-//        val ref = firebaseDatabase.getReference("")
-//    }
+    fun loadProductById(categoryId: String): LiveData<MutableList<ProductModel>> {
+        val listData = MutableLiveData<MutableList<ProductModel>>()
+        val ref = firebaseDatabase.getReference("Product")
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val list = mutableListOf<ProductModel>()
+
+                for(childSnapshot in snapshot.children) {
+                    val item = childSnapshot.getValue(ProductModel::class.java)
+                    if(item?.CategoryId == categoryId) {
+                        list.add(item)
+                    }
+                }
+
+                listData.value = list
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        return listData
+    }
 }

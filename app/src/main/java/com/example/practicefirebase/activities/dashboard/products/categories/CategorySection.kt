@@ -1,5 +1,7 @@
 package com.example.practicefirebase.activities.dashboard.products.categories
 
+import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,13 +28,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
+import com.example.practicefirebase.activities.product_list.ProductActivity
 import com.example.practicefirebase.domain.CategoryModel
 
 @Composable
@@ -50,14 +55,15 @@ fun CategorySection(
             CircularProgressIndicator()
         }
     } else {
+        val context = LocalContext.current
 
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 4.dp)
+                    .padding(vertical = 4.dp)
             ) {
                 Text(
                     text = "Food list",
@@ -79,12 +85,18 @@ fun CategorySection(
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
-                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp)
+                contentPadding = PaddingValues(end = 16.dp, top = 8.dp)
             ) {
                 items(category.size) {index ->
                     Category(
                         item = category[index],
-                        onItemClick = {}
+                        onItemClick = {
+                            val intent = Intent(context, ProductActivity::class.java).apply {
+                                putExtra("categoryId", category[index].Id)
+                                Log.d("CategoryId", "Category Id = ${category[index].Id}")
+                            }
+                            startActivity(context, intent, null)
+                        }
                     )
                 }
             }

@@ -15,4 +15,8 @@ class DashboardViewModel {
     fun loadCake(): LiveData<MutableList<ProductModel>> {
         return repository.loadCake()
     }
+
+    fun loadProductById(categoryId: String): LiveData<MutableList<ProductModel>> {
+        return repository.loadProductById(categoryId)
+    }
 }
