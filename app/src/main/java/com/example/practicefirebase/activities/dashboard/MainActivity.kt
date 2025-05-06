@@ -43,7 +43,6 @@ class MainActivity : ComponentActivity() {
 fun DashboardScreen() {
 
     val viewmodel = DashboardViewModel()
-    val categoryId by remember { mutableStateOf("0") }
 
     val category = remember { mutableStateListOf<CategoryModel>() }
     val cake = remember { mutableStateListOf<ProductModel>() }

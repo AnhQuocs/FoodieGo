@@ -92,9 +92,10 @@ fun CategorySection(
                         item = category[index],
                         onItemClick = {
                             val intent = Intent(context, ProductActivity::class.java).apply {
-                                putExtra("categoryId", category[index].Id)
+                                putExtra("categoryId", category[index].Id.toString())
                                 Log.d("CategoryId", "Category Id = ${category[index].Id}")
                             }
+                            Log.d("CategoryId", "Intent Extra: ${intent.extras}")
                             startActivity(context, intent, null)
                         }
                     )
