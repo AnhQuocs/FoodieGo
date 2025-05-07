@@ -59,8 +59,9 @@ fun ProductListSection(
         LazyVerticalGrid(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(600.dp)
-                .padding(horizontal = 16.dp),
+                .height(880.dp)
+                .padding(horizontal = 16.dp)
+                .padding(top = 8.dp),
             columns = GridCells.Fixed(2)
         ) {
             item(span = { GridItemSpan(2) }) {

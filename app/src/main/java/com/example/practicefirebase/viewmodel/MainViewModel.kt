@@ -3,10 +3,11 @@ package com.example.practicefirebase.viewmodel
 import androidx.lifecycle.LiveData
 import com.example.practicefirebase.domain.ProductModel
 import com.example.practicefirebase.domain.CategoryModel
-import com.example.practicefirebase.repository.DashboardRepository
+import com.example.practicefirebase.domain.RestaurantModel
+import com.example.practicefirebase.repository.MainRepository
 
-class DashboardViewModel {
-    private val repository = DashboardRepository()
+class MainViewModel {
+    private val repository = MainRepository()
 
     fun loadCategory(): LiveData<MutableList<CategoryModel>> {
         return repository.loadCategory()
@@ -18,5 +19,9 @@ class DashboardViewModel {
 
     fun loadProductById(categoryId: String): LiveData<MutableList<ProductModel>> {
         return repository.loadProductById(categoryId)
+    }
+
+    fun loadRestaurant(): LiveData<MutableList<RestaurantModel>> {
+        return repository.loadRestaurant()
     }
 }

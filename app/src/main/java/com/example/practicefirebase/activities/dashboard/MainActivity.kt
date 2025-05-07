@@ -1,7 +1,6 @@
 package com.example.practicefirebase.activities.dashboard
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,7 +25,7 @@ import com.example.practicefirebase.activities.dashboard.products.categories.Cat
 import com.example.practicefirebase.domain.ProductModel
 import com.example.practicefirebase.domain.CategoryModel
 import com.example.practicefirebase.search.Search
-import com.example.practicefirebase.viewmodel.DashboardViewModel
+import com.example.practicefirebase.viewmodel.MainViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +41,7 @@ class MainActivity : ComponentActivity() {
 @Preview
 fun DashboardScreen() {
 
-    val viewmodel = DashboardViewModel()
+    val viewmodel = MainViewModel()
 
     val category = remember { mutableStateListOf<CategoryModel>() }
     val cake = remember { mutableStateListOf<ProductModel>() }

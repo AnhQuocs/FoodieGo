@@ -5,12 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.practicefirebase.domain.CategoryModel
 import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.RestaurantModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class DashboardRepository {
+class MainRepository {
     private val firebaseDatabase = FirebaseDatabase.getInstance()
 
     fun loadCategory(): LiveData<MutableList<CategoryModel>> {
@@ -86,6 +87,31 @@ class DashboardRepository {
                 TODO("Not yet implemented")
             }
 
+        })
+
+        return listData
+    }
+
+    fun loadRestaurant(): LiveData<MutableList<RestaurantModel>> {
+        val listData = MutableLiveData<MutableList<RestaurantModel>>()
+        val ref = firebaseDatabase.getReference("Restaurant")
+
+        ref .addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val lists = mutableListOf<RestaurantModel>()
+                for(childSnapshot in snapshot.children) {
+                    val list = childSnapshot.getValue(RestaurantModel::class.java)
+                    if(list != null) {
+                        lists.add(list)
+                    }
+                }
+
+                listData.value = lists
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
         })
 
         return listData
