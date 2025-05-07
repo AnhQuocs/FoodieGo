@@ -67,4 +67,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager-indicators:0.34.0")
     implementation("androidx.compose.material:material-icons-extended")
     implementation ("androidx.lifecycle:lifecycle-runtime-compose:1.6.5")
+    implementation ("com.google.android.gms:play-services-maps:17.0.1")
+    implementation ("com.google.maps.android:maps-compose:2.0.0")
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.1.1")
 }

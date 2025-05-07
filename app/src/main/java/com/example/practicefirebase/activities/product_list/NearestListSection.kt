@@ -1,5 +1,6 @@
 package com.example.practicefirebase.activities.product_list
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,8 +34,10 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
+import com.example.practicefirebase.activities.map.MapActivity
 import com.example.practicefirebase.domain.RestaurantModel
 
 @Composable
@@ -97,7 +100,13 @@ fun NearestItems(item: RestaurantModel) {
             .background(Color.White, shape = RoundedCornerShape(10.dp))
             .wrapContentHeight()
             .padding(8.dp)
-            .clickable {  }
+            .clickable {
+                val intent = Intent(context, MapActivity::class.java).apply {
+                    putExtra("object", item)
+                }
+
+                startActivity(context, intent, null)
+            }
     ) {
         RestaurantImage(item = item)
         RestaurantDetail(item = item)
