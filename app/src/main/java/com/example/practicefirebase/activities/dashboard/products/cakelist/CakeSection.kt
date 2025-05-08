@@ -1,7 +1,8 @@
 package com.example.practicefirebase.activities.dashboard.products.cakelist
 
-import android.util.Log
+import android.content.Intent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -24,13 +25,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
+import com.example.practicefirebase.activities.product.product_detail.ProductDetailActivity
 import com.example.practicefirebase.domain.ProductModel
 
 @Composable
@@ -38,6 +42,8 @@ fun CakeSection(
     cake: SnapshotStateList<ProductModel>,
     showCakeLoading: Boolean
 ) {
+    val context = LocalContext.current
+
     if (showCakeLoading) {
         Box(
             modifier = Modifier
@@ -80,7 +86,13 @@ fun CakeSection(
                 items(cake.size) {index ->
                     CakeItem(
                         item = cake[index],
-                        onCakeClick = {}
+                        onCakeClick = {
+                            val intent = Intent(context, ProductDetailActivity::class.java).apply {
+                                putExtra("productId", cake[index].Id)
+                            }
+
+                            startActivity(context, intent, null)
+                        }
                     )
                 }
             }
@@ -96,6 +108,7 @@ fun CakeItem(
     Column(
         modifier = Modifier
             .size(150.dp, 200.dp)
+            .clickable { onCakeClick() }
     ) {
         AsyncImage(
             model = item.ImagePath,

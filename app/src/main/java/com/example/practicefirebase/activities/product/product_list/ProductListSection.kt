@@ -74,12 +74,14 @@ fun ProductListSection(
                 BannerInList()
             }
 
-            item(span = {GridItemSpan(2)}) {
+            item(span = { GridItemSpan(2) }) {
                 Text(
                     "Product List",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
-                    modifier = Modifier.padding(top = 16.dp, bottom = 6.dp).padding(horizontal = 8.dp)
+                    modifier = Modifier
+                        .padding(top = 16.dp, bottom = 6.dp)
+                        .padding(horizontal = 8.dp)
                 )
             }
 
@@ -90,7 +92,9 @@ fun ProductListSection(
                     }
 
                     startActivity(context, intent, null)
-                })
+                },
+                    onOrderClick = {}
+                )
             }
         }
     }
@@ -99,7 +103,8 @@ fun ProductListSection(
 @Composable
 fun ProductItem(
     products: ProductModel,
-    onDetailClick: () -> Unit
+    onDetailClick: () -> Unit,
+    onOrderClick: () -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -153,7 +158,7 @@ fun ProductItem(
             )
 
             Button(
-                onClick = { onDetailClick() },
+                onClick = { onOrderClick() },
                 modifier = Modifier
                     .height(28.dp)
                     .align(Alignment.End)

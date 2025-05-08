@@ -14,9 +14,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.practicefirebase.R
 import com.example.practicefirebase.domain.ProductModel
 import com.example.practicefirebase.viewmodel.MainViewModel
 
@@ -63,7 +60,7 @@ fun ProductDetail(
         item {
             if(products.isNotEmpty()) {
                 ProductDetailSection(
-                    products = products.first(),
+                    product = products.first(),
                     showProductDetailLoading = showProductDetailLoading,
                     onBackClick = onBackClick
                 )
