@@ -1,5 +1,6 @@
-package com.example.practicefirebase.activities.product_list
+package com.example.practicefirebase.activities.product.product_list
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,13 +33,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
+import com.example.practicefirebase.activities.product.product_detail.ProductDetailActivity
 import com.example.practicefirebase.domain.ProductModel
 
 @Composable
@@ -46,6 +50,8 @@ fun ProductListSection(
     products: SnapshotStateList<ProductModel>,
     showProductListLoading: Boolean
 ) {
+    val context = LocalContext.current
+
     if (showProductListLoading) {
         Box(
             modifier = Modifier
@@ -78,7 +84,13 @@ fun ProductListSection(
             }
 
             items(products.size) { index ->
-                ProductItem(products = products[index], onDetailClick = {})
+                ProductItem(products = products[index], onDetailClick = {
+                    val intent = Intent(context, ProductDetailActivity::class.java).apply {
+                        putExtra("productId", products[index].Id)
+                    }
+
+                    startActivity(context, intent, null)
+                })
             }
         }
     }

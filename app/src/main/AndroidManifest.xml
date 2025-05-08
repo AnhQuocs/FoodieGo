@@ -24,8 +24,11 @@
             android:name=".activities.map.MapActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.product_list.ProductActivity"
+            android:name=".activities.product.product_list.ProductActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.product.product_detail.ProductDetailActivity"
+            android:exported="false"/>
         <activity
             android:name=".activities.dashboard.MainActivity"
             android:exported="true"

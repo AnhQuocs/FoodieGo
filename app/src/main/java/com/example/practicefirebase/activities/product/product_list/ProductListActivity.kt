@@ -1,4 +1,4 @@
-package com.example.practicefirebase.activities.product_list
+package com.example.practicefirebase.activities.product.product_list
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,6 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
+import com.example.practicefirebase.R
 import com.example.practicefirebase.domain.ProductModel
 import com.example.practicefirebase.domain.RestaurantModel
 import com.example.practicefirebase.viewmodel.MainViewModel
@@ -27,10 +31,10 @@ class ProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        categoryId = intent.getStringExtra("categoryId")?: ""
+        categoryId = intent.getStringExtra("categoryId") ?: ""
 
         setContent {
-            ProductList(categoryId, onBackClick = {finish()})
+            ProductList(categoryId, onBackClick = { finish() })
         }
     }
 }
@@ -49,14 +53,14 @@ fun ProductList(
     var showNearestLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(categoryId) {
-        viewmodel.loadProductById(categoryId).observeForever {
+        viewmodel.loadProductByCategoryId(categoryId).observeForever {
             products.clear()
             products.addAll(it)
         }
     }
 
     LaunchedEffect(Unit) {
-        viewmodel.loadProductById(categoryId).observeForever {
+        viewmodel.loadProductByCategoryId(categoryId).observeForever {
             products.clear()
             products.addAll(it)
             showProductListLoading = false
@@ -76,8 +80,22 @@ fun ProductList(
             .fillMaxSize()
             .background(color = Color(0xFFFFF9ED))
     ) {
-        item { TopBar(onBackClick = onBackClick) }
-        item { ProductListSection(products = products, showProductListLoading = showProductListLoading) }
+        item {
+            TopBar(
+                onBackClick = onBackClick,
+                modifier = Modifier
+                    .height(120.dp)
+                    .background(color = colorResource(R.color.blue)),
+                title = "Choose a Dish",
+                color = Color.White
+            )
+        }
+        item {
+            ProductListSection(
+                products = products,
+                showProductListLoading = showProductListLoading
+            )
+        }
         item { NearestListSection(list = nearest, showNearestLoading = showNearestLoading) }
     }
 }

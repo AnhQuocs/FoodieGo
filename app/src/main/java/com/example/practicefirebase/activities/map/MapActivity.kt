@@ -27,9 +27,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.practicefirebase.R
-import com.example.practicefirebase.activities.product_list.NearestItems
-import com.example.practicefirebase.activities.product_list.RestaurantDetail
-import com.example.practicefirebase.activities.product_list.RestaurantImage
+import com.example.practicefirebase.activities.product.product_list.NearestItems
+import com.example.practicefirebase.activities.product.product_list.RestaurantDetail
+import com.example.practicefirebase.activities.product.product_list.RestaurantImage
 import com.example.practicefirebase.domain.RestaurantModel
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng

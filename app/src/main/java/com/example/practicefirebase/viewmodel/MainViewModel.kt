@@ -17,8 +17,12 @@ class MainViewModel {
         return repository.loadCake()
     }
 
-    fun loadProductById(categoryId: String): LiveData<MutableList<ProductModel>> {
-        return repository.loadProductById(categoryId)
+    fun loadProductByCategoryId(categoryId: String): LiveData<MutableList<ProductModel>> {
+        return repository.loadProductByCategoryId(categoryId)
+    }
+
+    fun loadProductById(id: Int): LiveData<MutableList<ProductModel>> {
+        return repository.loadProductById(id)
     }
 
     fun loadRestaurant(): LiveData<MutableList<RestaurantModel>> {

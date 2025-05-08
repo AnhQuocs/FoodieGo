@@ -1,4 +1,4 @@
-package com.example.practicefirebase.activities.product_list
+package com.example.practicefirebase.activities.product.product_list
 
 import android.content.Intent
 import androidx.compose.foundation.Image
