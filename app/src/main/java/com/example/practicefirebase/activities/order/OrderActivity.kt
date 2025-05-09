@@ -57,6 +57,8 @@ fun Order(
     var selectedDate by remember { mutableStateOf(currentDate) }
     var selectedTime by remember { mutableStateOf(currentTime) }
 
+    var selectedPayment by remember { mutableStateOf("Visa *1234") }
+
     LaunchedEffect(Unit) {
         showItemLoading = false
     }
@@ -69,7 +71,7 @@ fun Order(
         item {
             TopBar(
                 onBackClick = { onBackClick() },
-                modifier = Modifier.background(color = Color.White).height(50.dp),
+                modifier = Modifier.background(color = Color.White).height(70.dp),
                 title = "Order",
                 color = Color.Black
             )
@@ -78,6 +80,7 @@ fun Order(
         item { InfoItemSection(product, showItemLoading) }
         item {
             BookingDetailsSection(
+                product = product,
                 productQuantity = productQuantity,
                 onProductQuantityChange = {productQuantity = it},
                 tableQuantity = tableQuantity,
@@ -85,7 +88,9 @@ fun Order(
                 selectedDate = selectedDate,
                 onDateSelected = {selectedDate = it},
                 selectedTime = selectedTime,
-                onTimeSelected = {selectedTime = it}
+                onTimeSelected = {selectedTime = it},
+                selectedPayment = selectedPayment,
+                onPaymentSelected = {selectedPayment = it}
             )
         }
     }

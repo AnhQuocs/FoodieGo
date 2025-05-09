@@ -34,6 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
@@ -97,12 +98,24 @@ fun ProductDetailSection(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
-                text = product.Price,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color(0xFFFF3333)
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = product.Price,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color(0xFFFF3333)
+                )
+                Text(
+                    "(VAT not included)",
+                    fontSize = 16.sp,
+                    fontStyle = FontStyle.Italic,
+                    color = Color.Black.copy(alpha = 0.5f),
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
 
