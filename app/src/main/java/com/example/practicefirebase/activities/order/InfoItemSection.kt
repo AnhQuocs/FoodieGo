@@ -74,7 +74,7 @@ fun InfoItemSection(
                     modifier = Modifier
                         .constrainAs(name) {
                             top.linkTo(parent.top)
-                            start.linkTo(img.end, margin = 16.dp)
+                            start.linkTo(img.end, margin = 12.dp)
                         }
                 )
 

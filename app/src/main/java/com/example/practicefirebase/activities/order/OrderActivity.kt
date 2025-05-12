@@ -1,5 +1,6 @@
 package com.example.practicefirebase.activities.order
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,11 +17,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.practicefirebase.R
+import com.example.practicefirebase.activities.checkout.CheckoutActivity
 import com.example.practicefirebase.activities.product.product_list.TopBar
 import com.example.practicefirebase.domain.ProductModel
 import java.time.LocalDate
@@ -47,6 +51,8 @@ fun Order(
     product: ProductModel,
     onBackClick: () -> Unit
 ) {
+    val context = LocalContext.current
+
     var showItemLoading by remember { mutableStateOf(true) }
 
     var productQuantity by remember { mutableStateOf(1) }
@@ -90,7 +96,18 @@ fun Order(
                 selectedTime = selectedTime,
                 onTimeSelected = {selectedTime = it},
                 selectedPayment = selectedPayment,
-                onPaymentSelected = {selectedPayment = it}
+                onPaymentSelected = {selectedPayment = it},
+                onOrderClick = {
+                    val intent = Intent(context, CheckoutActivity::class.java).apply {
+                        putExtra("product", product)
+                        putExtra("productQuantity", productQuantity)
+                        putExtra("tableQuantity", tableQuantity)
+                        putExtra("date", selectedDate)
+                        putExtra("time", selectedTime)
+                        putExtra("payment", selectedPayment)
+                    }
+                    startActivity(context, intent, null)
+                }
             )
         }
     }

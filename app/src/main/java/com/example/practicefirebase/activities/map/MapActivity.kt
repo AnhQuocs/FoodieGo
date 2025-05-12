@@ -14,10 +14,14 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -113,12 +117,22 @@ fun MapScreen(
                         context.startActivity(diaIntent)
                     }
                 ) {
-                    Text(
-                        "Call to Restaurant",
-                        fontSize = 18.sp,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            Icons.Default.Call,
+                            contentDescription = null,
+                            tint = Color.White,
+                            modifier = Modifier.padding(end = 8.dp)
+                        )
+                        Text(
+                            "Call to Restaurant",
+                            fontSize = 18.sp,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
             }
         }

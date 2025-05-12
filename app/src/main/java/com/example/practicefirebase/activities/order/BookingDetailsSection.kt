@@ -51,7 +51,8 @@ fun BookingDetailsSection(
     selectedTime: String,
     onTimeSelected: (String) -> Unit,
     selectedPayment: String,
-    onPaymentSelected: (String) -> Unit
+    onPaymentSelected: (String) -> Unit,
+    onOrderClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -76,7 +77,7 @@ fun BookingDetailsSection(
         LineGrey()
         TotalPrice(product = product, quantity = productQuantity, tableQuantity = tableQuantity)
         LineGrey()
-        OrderButton()
+        ButtonSection(onOrderClick, title = "Order")
     }
 }
 
@@ -338,8 +339,8 @@ fun PaymentButton(
 
 @Composable
 fun TotalPrice(
-    quantity: Int,
     product: ProductModel,
+    quantity: Int,
     tableQuantity: Int
 ) {
     val productPrice = product.Price.replace("$", "").toDouble()
@@ -402,9 +403,12 @@ fun TotalItem(
 }
 
 @Composable
-fun OrderButton() {
+fun ButtonSection(
+    onOrderClick: () -> Unit,
+    title: String
+) {
     Button(
-        onClick = {},
+        onClick = { onOrderClick() },
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
@@ -415,7 +419,7 @@ fun OrderButton() {
         )
     ) {
         Text(
-            "Order",
+            text = title,
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White
