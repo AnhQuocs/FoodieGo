@@ -56,13 +56,6 @@ fun ProductList(
         viewmodel.loadProductByCategoryId(categoryId).observeForever {
             products.clear()
             products.addAll(it)
-        }
-    }
-
-    LaunchedEffect(Unit) {
-        viewmodel.loadProductByCategoryId(categoryId).observeForever {
-            products.clear()
-            products.addAll(it)
             showProductListLoading = false
         }
     }

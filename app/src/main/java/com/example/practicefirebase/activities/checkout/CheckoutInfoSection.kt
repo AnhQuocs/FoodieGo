@@ -1,5 +1,8 @@
 package com.example.practicefirebase.activities.checkout
 
+import android.content.Intent
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,7 +13,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForwardIos
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,13 +25,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.example.practicefirebase.activities.order.ButtonSection
+import com.example.practicefirebase.activities.order.LineGrey
 import com.example.practicefirebase.activities.order.TotalPrice
+import com.example.practicefirebase.activities.promo.PromoActivity
 import com.example.practicefirebase.domain.ProductModel
 
 @Composable
@@ -41,18 +51,19 @@ fun CheckoutInfoSection(
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        CheckoutItemRow(title = "PAYMENT", value = payment)
-        Divider()
-        CheckoutItemRow(title = "PROMOS", value = "Apply promo code")
-        Divider()
-        CheckoutItemRow(title = "DATE", value = date)
-        Divider()
-        CheckoutItemRow(title = "TIME", value = time)
-        Divider()
+        LineGrey()
+        CheckoutItemRow(title = "PAYMENT", value = payment, color = Color.Black)
+        LineGrey()
+        CheckoutItemRow(title = "PROMOS", value = "Apply promo code", color = Color.Black.copy(alpha = 0.5f), hasArrow = true)
+        LineGrey()
+        CheckoutItemRow(title = "DATE", value = date, color = Color.Black)
+        LineGrey()
+        CheckoutItemRow(title = "TIME", value = time, color = Color.Black)
+        LineGrey()
         ProductItem(product = product,productQuantity = productQuantity, tableQuantity = tableQuantity)
-        Divider()
+        LineGrey()
         TotalPrice(product = product, quantity = productQuantity, tableQuantity = tableQuantity)
-        Divider()
+        LineGrey()
         ButtonSection(title = "Place order", onOrderClick = onOrderClick)
     }
 }
@@ -60,8 +71,11 @@ fun CheckoutInfoSection(
 @Composable
 fun CheckoutItemRow(
     title: String,
-    value: String
+    value: String,
+    color: Color,
+    hasArrow: Boolean = false
 ) {
+    val context = LocalContext.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,20 +85,41 @@ fun CheckoutItemRow(
         // Cột bên trái (nhãn)
         Text(
             text = title,
+            fontSize = 15.sp,
             modifier = Modifier.weight(1f),
+            fontWeight = FontWeight.SemiBold,
             style = MaterialTheme.typography.bodyMedium
         )
 
         // Cột bên phải (nội dung)
-        Text(
-            text = value,
+        Row(
             modifier = Modifier.weight(2f),
-            textAlign = TextAlign.Start,
-            style = MaterialTheme.typography.bodyMedium
-        )
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = value,
+                fontSize = 15.sp,
+                color = color,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+            if (hasArrow) {
+                Icon(
+                    imageVector = Icons.Default.ArrowForwardIos,
+                    contentDescription = null,
+                    tint = Color.Black.copy(0.5f),
+                    modifier = Modifier
+                        .size(16.dp)
+                        .clickable {
+                            val intent = Intent(context, PromoActivity::class.java)
+                            startActivity(context, intent, null)
+                        }
+                )
+            }
+        }
     }
 }
-
 
 @Composable
 fun ProductItem(
@@ -94,7 +129,8 @@ fun ProductItem(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
@@ -102,7 +138,7 @@ fun ProductItem(
         ) {
             Text(
                 "ITEM",
-                fontSize = 16.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.Black
             )
@@ -115,7 +151,8 @@ fun ProductItem(
                 modifier = Modifier
                     .size(100.dp)
                     .aspectRatio(1f)
-                    .clip(RoundedCornerShape(10.dp)),
+                    .clip(RoundedCornerShape(10.dp))
+                    .border(1.dp, Color.LightGray, RoundedCornerShape(10.dp)),
                 contentScale = ContentScale.Crop
             )
         }
@@ -125,7 +162,7 @@ fun ProductItem(
         ) {
             Text(
                 "DESCRIPTION",
-                fontSize = 16.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.Black
             )
@@ -135,9 +172,11 @@ fun ProductItem(
             Column {
                 Text(
                     text = product.Name,
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black
                 )
+
+                Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
                     "Quantity: $productQuantity",
@@ -145,9 +184,11 @@ fun ProductItem(
                     color = Color.Black
                 )
 
+                Spacer(modifier = Modifier.height(8.dp))
+
                 Text(
                     "Number of Tables: $tableQuantity",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black
                 )
             }
@@ -158,7 +199,7 @@ fun ProductItem(
         ) {
             Text(
                 "PRICE",
-                fontSize = 16.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.Black
             )
@@ -167,8 +208,9 @@ fun ProductItem(
 
             Text(
                 text = "${product.Price}",
-                fontSize = 16.sp,
-                color = Color.Black
+                fontSize = 15.sp,
+                color = Color.Black,
+                fontWeight = FontWeight.SemiBold
             )
         }
     }

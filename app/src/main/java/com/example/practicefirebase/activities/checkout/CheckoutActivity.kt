@@ -1,16 +1,24 @@
 package com.example.practicefirebase.activities.checkout
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import com.example.practicefirebase.R
+import com.example.practicefirebase.activities.order.OrderSuccessActivity
 import com.example.practicefirebase.activities.product.product_list.TopBar
 import com.example.practicefirebase.domain.ProductModel
 
@@ -58,6 +66,9 @@ fun Checkout(
     payment: String,
     onBackClick: () -> Unit
 ) {
+    val context = LocalContext.current
+    val activity = context as? Activity
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -68,7 +79,7 @@ fun Checkout(
                 title = "Checkout",
                 color = Color.Black,
                 onBackClick = { onBackClick() },
-                modifier = Modifier.background(Color.White)
+                modifier = Modifier.background(Color.White).height(100.dp)
             )
         }
 
@@ -80,7 +91,13 @@ fun Checkout(
                 tableQuantity = tableQuantity,
                 date = date,
                 time = time,
-                onOrderClick = {}
+                onOrderClick = {
+                    val intent = Intent(context, OrderSuccessActivity::class.java).apply {
+                        putExtra("categoryId", product.CategoryId.toString())
+                    }
+                    context.startActivity(intent)
+                    activity?.finish()
+                }
             )
         }
     }

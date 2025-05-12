@@ -163,7 +163,7 @@ fun DatePickerItem(
 ) {
     val context = LocalContext.current
     val calendar = remember { Calendar.getInstance() }
-    val dateFormat = remember { SimpleDateFormat("yyy-MM-dd", Locale.getDefault()) }
+    val dateFormat = remember { SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) }
 
     Column(
         modifier = Modifier.width(180.dp),

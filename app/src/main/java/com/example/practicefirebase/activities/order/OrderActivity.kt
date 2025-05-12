@@ -77,7 +77,7 @@ fun Order(
         item {
             TopBar(
                 onBackClick = { onBackClick() },
-                modifier = Modifier.background(color = Color.White).height(70.dp),
+                modifier = Modifier.background(color = Color.White).height(75.dp),
                 title = "Order",
                 color = Color.Black
             )

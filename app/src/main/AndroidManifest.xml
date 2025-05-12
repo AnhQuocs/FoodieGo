@@ -16,6 +16,12 @@
         android:theme="@style/Theme.PracticeFirebase"
         tools:targetApi="31">
         <activity
+            android:name=".activities.order.OrderSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.promo.PromoActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.checkout.CheckoutActivity"
             android:exported="false" />
         <activity
