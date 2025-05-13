@@ -82,10 +82,10 @@ fun BookingDetailsSection(
 }
 
 @Composable
-fun LineGrey() {
+fun LineGrey(modifier: Modifier = Modifier) {
     Spacer(modifier = Modifier.height(8.dp))
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(1.dp)
             .background(color = Color(0xFFEEEEEE))
@@ -369,11 +369,11 @@ fun TotalPrice(
                 fontWeight = FontWeight.SemiBold
             )
         }
-
+`
         Spacer(modifier = Modifier.height(8.dp))
 
         TotalItem(text = "Taxes (8%)", value = taxes)
-        TotalItem(text = "Service Fee ($/table)", value = serviceFee)
+        TotalItem(text = "Service Fee ($0.99/table)", value = serviceFee)
         TotalItem(text = "Total", value = total)
     }
 }

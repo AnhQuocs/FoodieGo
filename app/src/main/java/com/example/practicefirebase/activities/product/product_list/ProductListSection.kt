@@ -66,26 +66,11 @@ fun ProductListSection(
         LazyVerticalGrid(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(880.dp)
+                .height(670.dp)
                 .padding(horizontal = 16.dp)
                 .padding(top = 8.dp),
             columns = GridCells.Fixed(2)
         ) {
-            item(span = { GridItemSpan(2) }) {
-                BannerInList()
-            }
-
-            item(span = { GridItemSpan(2) }) {
-                Text(
-                    "Product List",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
-                    modifier = Modifier
-                        .padding(top = 16.dp, bottom = 6.dp)
-                        .padding(horizontal = 8.dp)
-                )
-            }
-
             items(products.size) { index ->
                 ProductItem(products = products[index], onDetailClick = {
                     val intent = Intent(context, ProductDetailActivity::class.java).apply {
@@ -192,6 +177,7 @@ fun BannerInList() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 4.dp)
+            .padding(horizontal = 16.dp)
             .clip(RoundedCornerShape(10.dp))
             .height(150.dp)
     )
