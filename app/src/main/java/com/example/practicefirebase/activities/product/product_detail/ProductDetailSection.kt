@@ -2,6 +2,7 @@ package com.example.practicefirebase.activities.product.product_detail
 
 import android.content.Intent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -144,22 +145,7 @@ fun ProductDetailSection(
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-                        "Sed do eiusmod tempor incididunt et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n",
-                fontSize = 16.sp,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis
-            )
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Text(
-                "Read more",
-                fontSize = 16.sp,
-                color = colorResource(R.color.blue)
-            )
+            ReadMoreText()
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -182,7 +168,7 @@ fun ProductDetailSection(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 50.dp),
+                    .padding(top = 30.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Button(
@@ -194,7 +180,8 @@ fun ProductDetailSection(
                     },
                     modifier = Modifier
                         .weight(0.8f)
-                        .height(40.dp),
+                        .height(40.dp)
+                        .align(Alignment.Bottom),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorResource(R.color.blue)
                     ),
@@ -223,5 +210,30 @@ fun ProductDetailSection(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun ReadMoreText() {
+    var expanded by remember { mutableStateOf(false) }
+
+    Column {
+        Text(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                    "Sed do eiusmod tempor incididunt et dolore magna aliqua. " +
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            fontSize = 16.sp,
+            maxLines = if (expanded) Int.MAX_VALUE else 4,
+            overflow = TextOverflow.Ellipsis
+        )
+
+        Spacer(modifier = Modifier.height(6.dp))
+
+        Text(
+            text = if (expanded) "Show less" else "Read more",
+            fontSize = 16.sp,
+            color = colorResource(R.color.blue),
+            modifier = Modifier.clickable { expanded = !expanded }
+        )
     }
 }

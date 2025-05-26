@@ -369,7 +369,7 @@ fun TotalPrice(
                 fontWeight = FontWeight.SemiBold
             )
         }
-`
+
         Spacer(modifier = Modifier.height(8.dp))
 
         TotalItem(text = "Taxes (8%)", value = taxes)
