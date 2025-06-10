@@ -96,8 +96,8 @@ fun SliderSection() {
                 .padding(bottom = 8.dp),
             activeColor = Color.Black,
             inactiveColor = Color.Gray,
-            indicatorWidth = 6.dp,       // Chiều rộng mỗi chấm
-            indicatorHeight = 6.dp,      // Chiều cao mỗi chấm
+            indicatorWidth = 6.dp,
+            indicatorHeight = 6.dp,
             spacing = 8.dp
         )
     }
