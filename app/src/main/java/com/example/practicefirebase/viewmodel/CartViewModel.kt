@@ -25,7 +25,7 @@ class CartViewModel @Inject constructor(
         viewModelScope.launch {
             val cartItem = CartModel(
                 productId = product.Id,
-                title = product.Price,
+                title = product.Name,
                 description = product.Description,
                 price = product.Price,
                 image = product.ImagePath
