@@ -16,22 +16,22 @@ class MainRepository {
 
     fun loadCategory(): LiveData<MutableList<CategoryModel>> {
         val listData = MutableLiveData<MutableList<CategoryModel>>()
-        val ref = firebaseDatabase.getReference("Category")
+        val ref = FirebaseDatabase.getInstance().getReference("Category")
+
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list = mutableListOf<CategoryModel>()
-                for(childSnapshot in snapshot.children) {
+                for (childSnapshot in snapshot.children) {
                     val item = childSnapshot.getValue(CategoryModel::class.java)
-                    item?.let {
-                        list.add(it)
+                    if (item != null) {
+                        list.add(item)
                     }
                 }
-
                 listData.value = list
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                // Optional: log error
             }
         })
 

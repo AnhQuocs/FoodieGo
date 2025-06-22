@@ -7,5 +7,6 @@ data class ProductModel(
     var CategoryId: String? = null,
     var ImagePath: String = "",
     var Name: String = "",
+    var Description: String = "",
     var Price: String = ""
 ): Serializable

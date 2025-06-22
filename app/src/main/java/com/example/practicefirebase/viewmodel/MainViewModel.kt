@@ -1,12 +1,13 @@
 package com.example.practicefirebase.viewmodel
 
 import androidx.lifecycle.LiveData
-import com.example.practicefirebase.domain.ProductModel
+import androidx.lifecycle.ViewModel
 import com.example.practicefirebase.domain.CategoryModel
+import com.example.practicefirebase.domain.ProductModel
 import com.example.practicefirebase.domain.RestaurantModel
 import com.example.practicefirebase.repository.MainRepository
 
-class MainViewModel {
+class MainViewModel : ViewModel() {
     private val repository = MainRepository()
 
     fun loadCategory(): LiveData<MutableList<CategoryModel>> {

@@ -32,7 +32,6 @@ import com.example.practicefirebase.R
 import com.example.practicefirebase.domain.TabModel
 
 @Composable
-@Preview
 fun TabSection() {
     val tabs: List<TabModel> = listOf(
         TabModel(1, Icons.Default.FavoriteBorder, "Favorites"),

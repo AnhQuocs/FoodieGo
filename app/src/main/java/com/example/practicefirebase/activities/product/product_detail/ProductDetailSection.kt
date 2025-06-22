@@ -1,6 +1,7 @@
 package com.example.practicefirebase.activities.product.product_detail
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Button
@@ -24,6 +26,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,19 +45,23 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
 import com.example.practicefirebase.activities.order.OrderActivity
 import com.example.practicefirebase.activities.product.product_list.TopBar
 import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.viewmodel.CartViewModel
 
 @Composable
 fun ProductDetailSection(
     product: ProductModel,
     showProductDetailLoading: Boolean,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    cartViewModel: CartViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    var lastToastTime by remember { mutableStateOf(0L) }
 
     TopBar(
         onBackClick = onBackClick,
@@ -64,6 +71,16 @@ fun ProductDetailSection(
         title = "Food Detail",
         color = Color.Black
     )
+
+    LaunchedEffect(cartViewModel.cartEvent) {
+        cartViewModel.cartEvent.collect {message ->
+            val currentTime = System.currentTimeMillis()
+            if(currentTime - lastToastTime > 2000) {
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                lastToastTime = currentTime
+            }
+        }
+    }
 
     if (showProductDetailLoading) {
         Box(
@@ -145,7 +162,7 @@ fun ProductDetailSection(
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            ReadMoreText()
+            ReadMoreText(product)
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -195,18 +212,39 @@ fun ProductDetailSection(
 
                 var isFavorite by remember { mutableStateOf(true) }
 
-                IconButton(
-                    onClick = { isFavorite = !isFavorite },
-                    modifier = Modifier.weight(0.2f)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.weight(0.4f)
                 ) {
-                    Icon(
-                        if(isFavorite)Icons.Default.FavoriteBorder else Icons.Default.Favorite,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .padding(horizontal = 8.dp)
-                            .weight(0.2f)
-                            .size(30.dp)
-                    )
+                    IconButton(
+                        onClick = {
+                            cartViewModel.addToCart(product)
+                        },
+                        modifier = Modifier.weight(0.2f)
+                    ) {
+                        Icon(
+                            Icons.Default.AddShoppingCart,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(horizontal = 8.dp)
+                                .size(30.dp)
+                        )
+                    }
+
+                    IconButton(
+                        onClick = {
+                            isFavorite = !isFavorite
+                        },
+                        modifier = Modifier.weight(0.2f)
+                    ) {
+                        Icon(
+                            if(isFavorite)Icons.Default.FavoriteBorder else Icons.Default.Favorite,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(horizontal = 8.dp)
+                                .size(30.dp)
+                        )
+                    }
                 }
             }
         }
@@ -214,14 +252,12 @@ fun ProductDetailSection(
 }
 
 @Composable
-fun ReadMoreText() {
+fun ReadMoreText(product: ProductModel) {
     var expanded by remember { mutableStateOf(false) }
 
     Column {
         Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-                    "Sed do eiusmod tempor incididunt et dolore magna aliqua. " +
-                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            "${product.Description}",
             fontSize = 16.sp,
             maxLines = if (expanded) Int.MAX_VALUE else 4,
             overflow = TextOverflow.Ellipsis
