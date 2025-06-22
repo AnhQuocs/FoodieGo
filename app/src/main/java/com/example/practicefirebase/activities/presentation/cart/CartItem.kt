@@ -72,7 +72,7 @@ fun CartItem(
                 checked = selectedItem.contains(cartItem),
                 onCheckedChange = { isChecked -> onChecked(isChecked) },
                 colors = CheckboxDefaults.colors(
-                    uncheckedColor = Color.Gray,
+                    uncheckedColor = Color.LightGray,
                     checkedColor = Color.Black
                 )
             )

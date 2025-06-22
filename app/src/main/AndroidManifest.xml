@@ -17,16 +17,23 @@
         android:theme="@style/Theme.PracticeFirebase"
         tools:targetApi="31">
         <activity
-            android:name=".activities.order.OrderSuccessActivity"
+            android:name=".activities.presentation.order_from_cart.CheckoutFromCartActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PracticeFirebase" />
+        <activity
+            android:name=".activities.presentation.order_from_cart.OrderFromCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.presentation.order.OrderSuccessActivity"
             android:exported="false" />
         <activity
             android:name=".activities.promo.PromoActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.checkout.CheckoutActivity"
+            android:name=".activities.presentation.checkout.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.order.OrderActivity"
+            android:name=".activities.presentation.order.OrderActivity"
             android:exported="false" />
 
         <meta-data

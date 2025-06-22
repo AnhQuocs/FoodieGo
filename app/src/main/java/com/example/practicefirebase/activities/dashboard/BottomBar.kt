@@ -36,10 +36,11 @@ fun MyBottomBar(navController: NavController) {
         tonalElevation = 3.dp,
         modifier = Modifier
             .border(1.dp, Color.LightGray.copy(alpha = 0.4f))
-            .height(56.dp)
+            .height(62.dp)
     ) {
         Screen.items.forEach { screen ->
             val isSelected = currentRoute == screen.route
+            val iconColor = if (isSelected) Color(0xFF007BFF) else colorResource(R.color.darkBrown)
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -62,13 +63,13 @@ fun MyBottomBar(navController: NavController) {
                     Icon(
                         imageVector = screen.icon,
                         contentDescription = screen.label,
-                        tint = colorResource(R.color.darkBrown),
+                        tint = iconColor,
                         modifier = Modifier.size(20.dp)
                     )
                     Text(
                         text = screen.label,
                         fontSize = 12.sp,
-                        color = colorResource(R.color.darkBrown),
+                        color = iconColor,
                         modifier = Modifier.padding(top = 8.dp)
                     )
                 }

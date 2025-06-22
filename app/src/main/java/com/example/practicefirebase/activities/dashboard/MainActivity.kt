@@ -37,28 +37,6 @@ fun DashboardScreen() {
     val viewmodel = MainViewModel()
     val navController = rememberNavController()
 
-//    val category = remember { mutableStateListOf<CategoryModel>() }
-//    val cake = remember { mutableStateListOf<ProductModel>() }
-//
-//    var showCategoryLoading by remember { mutableStateOf(true) }
-//    var showCakeLoading by remember { mutableStateOf(true) }
-//
-//    LaunchedEffect(Unit) {
-//        viewmodel.loadCategory().observeForever {
-//            category.clear()
-//            category.addAll(it)
-//            showCategoryLoading = false
-//        }
-//    }
-//
-//    LaunchedEffect(Unit) {
-//        viewmodel.loadCake().observeForever {
-//            cake.clear()
-//            cake.addAll(it)
-//            showCakeLoading = false
-//        }
-//    }
-
     Scaffold(
         bottomBar = { MyBottomBar(navController = navController) }
     ) {paddingValues ->

@@ -1,4 +1,4 @@
-package com.example.practicefirebase.activities.order
+package com.example.practicefirebase.activities.presentation.order
 
 import android.content.Intent
 import android.os.Bundle
@@ -24,7 +24,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.practicefirebase.R
-import com.example.practicefirebase.activities.checkout.CheckoutActivity
+import com.example.practicefirebase.activities.presentation.checkout.CheckoutActivity
 import com.example.practicefirebase.activities.product.product_list.TopBar
 import com.example.practicefirebase.domain.ProductModel
 import java.time.LocalDate

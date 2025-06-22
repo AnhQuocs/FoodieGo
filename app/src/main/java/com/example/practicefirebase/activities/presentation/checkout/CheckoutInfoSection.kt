@@ -1,4 +1,4 @@
-package com.example.practicefirebase.activities.checkout
+package com.example.practicefirebase.activities.presentation.checkout
 
 import android.content.Intent
 import androidx.compose.foundation.border
@@ -32,9 +32,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
-import com.example.practicefirebase.activities.order.ButtonSection
-import com.example.practicefirebase.activities.order.LineGrey
-import com.example.practicefirebase.activities.order.TotalPrice
+import com.example.practicefirebase.activities.presentation.order.ButtonSection
+import com.example.practicefirebase.activities.presentation.order.LineGrey
+import com.example.practicefirebase.activities.presentation.order.TotalPrice
 import com.example.practicefirebase.activities.promo.PromoActivity
 import com.example.practicefirebase.domain.ProductModel
 

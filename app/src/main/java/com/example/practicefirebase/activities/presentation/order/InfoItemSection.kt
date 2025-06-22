@@ -1,4 +1,4 @@
-package com.example.practicefirebase.activities.order
+package com.example.practicefirebase.activities.presentation.order
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box

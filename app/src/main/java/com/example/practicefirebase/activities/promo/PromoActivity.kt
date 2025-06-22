@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.practicefirebase.R
-import com.example.practicefirebase.activities.order.LineGrey
+import com.example.practicefirebase.activities.presentation.order.LineGrey
 import com.example.practicefirebase.activities.product.product_list.TopBar
 
 class PromoActivity : AppCompatActivity() {

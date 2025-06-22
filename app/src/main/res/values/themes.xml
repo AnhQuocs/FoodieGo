@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.PracticeFirebase" parent="Theme.AppCompat.Light.NoActionBar" />
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PracticeFirebase" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
 </resources>

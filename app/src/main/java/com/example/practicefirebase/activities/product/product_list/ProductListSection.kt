@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
-import com.example.practicefirebase.activities.order.OrderActivity
+import com.example.practicefirebase.activities.presentation.order.OrderActivity
 import com.example.practicefirebase.activities.product.product_detail.ProductDetailActivity
 import com.example.practicefirebase.domain.ProductModel
 

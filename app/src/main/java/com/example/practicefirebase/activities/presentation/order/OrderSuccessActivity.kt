@@ -1,4 +1,4 @@
-package com.example.practicefirebase.activities.order
+package com.example.practicefirebase.activities.presentation.order
 
 import android.os.Bundle
 import androidx.activity.compose.setContent

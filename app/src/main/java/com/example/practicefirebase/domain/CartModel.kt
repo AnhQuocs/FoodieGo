@@ -2,6 +2,7 @@ package com.example.practicefirebase.domain
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "cart_items")
 data class CartModel(
@@ -11,4 +12,4 @@ data class CartModel(
     val description: String,
     val price: String,
     val image: String
-)
+) : Serializable

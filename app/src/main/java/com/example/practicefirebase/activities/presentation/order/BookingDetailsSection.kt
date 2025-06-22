@@ -1,4 +1,4 @@
-package com.example.practicefirebase.activities.order
+package com.example.practicefirebase.activities.presentation.order
 
 import android.icu.util.Calendar
 import androidx.compose.foundation.background
@@ -294,7 +294,6 @@ fun Payment(
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.Start,
-//        verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         Text(
             "Payment",
