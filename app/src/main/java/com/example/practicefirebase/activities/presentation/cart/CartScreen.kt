@@ -39,8 +39,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.practicefirebase.activities.presentation.order.OrderActivity
 import com.example.practicefirebase.activities.presentation.order_from_cart.OrderFromCartActivity
 import com.example.practicefirebase.activities.product.product_detail.ProductDetailActivity
-import com.example.practicefirebase.domain.CartModel
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.cart.CartModel
+import com.example.practicefirebase.domain.product.ProductModel
 import com.example.practicefirebase.viewmodel.CartViewModel
 import java.text.NumberFormat
 import java.util.Locale

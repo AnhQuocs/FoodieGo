@@ -50,7 +50,7 @@ import coil.compose.AsyncImage
 import com.example.practicefirebase.R
 import com.example.practicefirebase.activities.presentation.order.OrderActivity
 import com.example.practicefirebase.activities.product.product_list.TopBar
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 import com.example.practicefirebase.viewmodel.CartViewModel
 
 @Composable

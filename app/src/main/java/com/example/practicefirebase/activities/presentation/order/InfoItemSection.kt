@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImage
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 
 @Composable
 fun InfoItemSection(

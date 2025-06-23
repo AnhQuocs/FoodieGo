@@ -14,7 +14,7 @@ import com.example.practicefirebase.activities.dashboard.TabSection
 import com.example.practicefirebase.activities.dashboard.products.cakelist.CakeSection
 import com.example.practicefirebase.activities.dashboard.products.categories.CategorySection
 import com.example.practicefirebase.domain.CategoryModel
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 import com.example.practicefirebase.search.Search
 import com.example.practicefirebase.viewmodel.MainViewModel
 

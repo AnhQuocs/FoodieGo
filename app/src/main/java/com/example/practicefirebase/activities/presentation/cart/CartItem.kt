@@ -32,7 +32,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.practicefirebase.domain.CartModel
+import com.example.practicefirebase.domain.cart.CartModel
 import java.util.Locale
 
 @Composable

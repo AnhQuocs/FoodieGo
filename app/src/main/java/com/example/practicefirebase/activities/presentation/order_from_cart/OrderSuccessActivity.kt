@@ -56,7 +56,7 @@ class OrderSuccessActivity : AppCompatActivity() {
 
         val productSize = intent.getIntExtra("productSize", 0)
         val tableQuantity = intent.getIntExtra("tableQuantity", 0)
-        val totalPrice = intent.getDoubleExtra("totalPrice", 0.0).toFloat()
+        val totalPrice = intent.getFloatExtra("totalPrice", 0.0f)
         val date = intent.getStringExtra("date") ?: ""
         val time = intent.getStringExtra("time") ?: ""
 

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.practicefirebase.domain.CartModel
+import com.example.practicefirebase.domain.cart.CartModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao

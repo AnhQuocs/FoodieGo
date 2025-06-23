@@ -3,8 +3,8 @@ package com.example.practicefirebase.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.practicefirebase.domain.CartModel
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.cart.CartModel
+import com.example.practicefirebase.domain.product.ProductModel
 import com.example.practicefirebase.repository.CartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

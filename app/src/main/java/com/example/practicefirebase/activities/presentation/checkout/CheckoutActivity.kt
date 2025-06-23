@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.practicefirebase.R
 import com.example.practicefirebase.activities.presentation.order_from_cart.OrderSuccessActivity
 import com.example.practicefirebase.activities.product.product_list.TopBar
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 
 class CheckoutActivity : AppCompatActivity() {
     private lateinit var product: ProductModel
@@ -68,7 +68,10 @@ fun Checkout(
     val context = LocalContext.current
     val activity = context as? Activity
 
-    val totalPrice = product.Price.replace("$", "").replace(",", ".").toDoubleOrNull() ?: 0.0
+    val totalPrice = product.Price
+        .replace("$", "")
+        .replace(",", ".")
+        .toFloatOrNull() ?: 0.0f
 
     Log.d("ProductPrice", "$totalPrice")
 

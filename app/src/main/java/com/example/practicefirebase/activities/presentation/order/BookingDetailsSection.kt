@@ -35,7 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.practicefirebase.R
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 import java.text.SimpleDateFormat
 import java.util.Locale
 

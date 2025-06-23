@@ -1,7 +1,7 @@
 package com.example.practicefirebase.repository
 
 import com.example.practicefirebase.data.local.CartDao
-import com.example.practicefirebase.domain.CartModel
+import com.example.practicefirebase.domain.cart.CartModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

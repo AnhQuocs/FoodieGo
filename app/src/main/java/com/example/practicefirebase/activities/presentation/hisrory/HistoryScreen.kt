@@ -1,4 +1,4 @@
-package com.example.practicefirebase.activities.screen_test
+package com.example.practicefirebase.activities.presentation.hisrory
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,10 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun DiscoverScreen() {
+fun HistoryScreen() {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        Text("Discover Screen")
+        Text("History Screen")
     }
 }

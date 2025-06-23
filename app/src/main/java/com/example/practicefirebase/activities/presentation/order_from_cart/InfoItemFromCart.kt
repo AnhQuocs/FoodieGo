@@ -24,21 +24,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImage
-import com.example.practicefirebase.activities.presentation.order.InfoItemSection
 import com.example.practicefirebase.activities.presentation.order.LineGrey
-import com.example.practicefirebase.activities.presentation.order.Payment
-import com.example.practicefirebase.activities.presentation.order.QuantitySection
 import com.example.practicefirebase.activities.presentation.order.TotalItem
-import com.example.practicefirebase.domain.CartModel
-import com.example.practicefirebase.domain.ProductModel
-import com.example.practicefirebase.ui.theme.PracticeFirebaseTheme
-import java.util.Locale
+import com.example.practicefirebase.domain.cart.CartModel
 
 @Composable
 fun InfoItemFromCart(

@@ -35,7 +35,7 @@ import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
 import com.example.practicefirebase.activities.product.product_detail.ProductDetailActivity
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 
 @Composable
 fun CakeSection(

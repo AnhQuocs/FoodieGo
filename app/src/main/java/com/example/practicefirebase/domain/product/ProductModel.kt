@@ -1,4 +1,4 @@
-package com.example.practicefirebase.domain
+package com.example.practicefirebase.domain.product
 
 import java.io.Serializable
 

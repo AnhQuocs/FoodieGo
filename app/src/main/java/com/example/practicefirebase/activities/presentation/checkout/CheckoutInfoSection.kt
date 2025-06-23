@@ -34,7 +34,7 @@ import com.example.practicefirebase.activities.presentation.order.ButtonSection
 import com.example.practicefirebase.activities.presentation.order.LineGrey
 import com.example.practicefirebase.activities.presentation.order.TotalPrice
 import com.example.practicefirebase.activities.promo.PromoActivity
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 
 @Composable
 fun CheckoutInfoSection(

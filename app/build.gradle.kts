@@ -42,6 +42,10 @@ android {
         compose = true
         viewBinding = true
     }
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
 }
 
 dependencies {

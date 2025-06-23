@@ -34,16 +34,23 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
 import com.example.practicefirebase.activities.presentation.checkout.CheckoutItemRow
 import com.example.practicefirebase.activities.presentation.order.ButtonSection
 import com.example.practicefirebase.activities.presentation.order.LineGrey
 import com.example.practicefirebase.activities.product.product_list.TopBar
-import com.example.practicefirebase.domain.CartModel
+import com.example.practicefirebase.domain.cart.CartModel
+import com.example.practicefirebase.domain.order.OrderItemModel
+import com.example.practicefirebase.domain.order.OrderModel
+import com.example.practicefirebase.viewmodel.OrderViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.NumberFormat
 import java.util.Locale
 
+@AndroidEntryPoint
 class CheckoutFromCartActivity : AppCompatActivity() {
 
     private var tableQuantity: Int = 0
@@ -95,6 +102,8 @@ fun CheckoutFromCartScreen(
     val context = LocalContext.current
     val activity = context as? Activity
 
+    val orderViewModel: OrderViewModel = hiltViewModel()
+
     Scaffold(
         topBar = {
             TopBar(
@@ -141,6 +150,23 @@ fun CheckoutFromCartScreen(
                 )
                 LineGrey()
                 ButtonSection(title = "Place order", onClick = {
+                    val order = OrderModel(
+                        totalPrice = totalPrice
+                    )
+
+                    val orderItems = cartItems.map { cartItem ->
+                        OrderItemModel(
+                            orderId = order.id,
+                            productId = cartItem.id,
+                            title = cartItem.title,
+                            description = cartItem.description,
+                            price = cartItem.price.replace("$", "").replace(",", ".").toFloatOrNull() ?: 0f,
+                            quantity = productQuantity[cartItem.id] ?: 1
+                        )
+                    }
+
+                    orderViewModel.insertOrderWithItems(order, orderItems)
+
                     val intent = Intent(context, OrderSuccessActivity::class.java)
                         .putExtra("productSize", cartItems.size)
                         .putExtra("totalPrice", totalPrice)

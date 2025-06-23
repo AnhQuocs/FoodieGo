@@ -33,7 +33,7 @@ import com.example.practicefirebase.activities.presentation.order.Payment
 import com.example.practicefirebase.activities.presentation.order.QuantitySection
 import com.example.practicefirebase.activities.presentation.order.TimePickerItem
 import com.example.practicefirebase.activities.product.product_list.TopBar
-import com.example.practicefirebase.domain.CartModel
+import com.example.practicefirebase.domain.cart.CartModel
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter

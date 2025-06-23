@@ -1,4 +1,4 @@
-package com.example.practicefirebase.domain
+package com.example.practicefirebase.domain.other
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

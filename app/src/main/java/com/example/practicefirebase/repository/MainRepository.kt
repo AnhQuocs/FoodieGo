@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.practicefirebase.domain.CategoryModel
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 import com.example.practicefirebase.domain.RestaurantModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

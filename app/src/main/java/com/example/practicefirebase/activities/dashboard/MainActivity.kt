@@ -15,11 +15,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.practicefirebase.activities.Screen
 import com.example.practicefirebase.activities.presentation.cart.CartScreen
-import com.example.practicefirebase.activities.screen_test.DiscoverScreen
+import com.example.practicefirebase.activities.presentation.hisrory.HistoryScreen
 import com.example.practicefirebase.activities.presentation.home.HomeScreen
 import com.example.practicefirebase.activities.screen_test.NotificationScreen
 import com.example.practicefirebase.activities.screen_test.ProfileScreen
-import com.example.practicefirebase.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -64,8 +63,8 @@ fun DashboardScreen(navController: NavHostController) {
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(Screen.Home.route) { HomeScreen() }
-            composable(Screen.Discover.route) { DiscoverScreen() }
             composable(Screen.Cart.route) { CartScreen() }
+            composable(Screen.History.route) { HistoryScreen() }
             composable(Screen.Notification.route) { NotificationScreen() }
             composable(Screen.Profile.route) { ProfileScreen() }
         }

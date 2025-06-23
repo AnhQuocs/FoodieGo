@@ -3,7 +3,7 @@ package com.example.practicefirebase.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.practicefirebase.domain.CategoryModel
-import com.example.practicefirebase.domain.ProductModel
+import com.example.practicefirebase.domain.product.ProductModel
 import com.example.practicefirebase.domain.RestaurantModel
 import com.example.practicefirebase.repository.MainRepository
 

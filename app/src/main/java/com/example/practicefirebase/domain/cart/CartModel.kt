@@ -1,4 +1,4 @@
-package com.example.practicefirebase.domain
+package com.example.practicefirebase.domain.cart
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
