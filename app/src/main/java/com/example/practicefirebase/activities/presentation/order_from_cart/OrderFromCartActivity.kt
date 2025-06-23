@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -26,11 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.practicefirebase.R
-import com.example.practicefirebase.activities.presentation.checkout.CheckoutActivity
-import com.example.practicefirebase.activities.presentation.cart.toProductModel
 import com.example.practicefirebase.activities.presentation.order.ButtonSection
 import com.example.practicefirebase.activities.presentation.order.DatePickerItem
 import com.example.practicefirebase.activities.presentation.order.LineGrey
@@ -39,7 +34,6 @@ import com.example.practicefirebase.activities.presentation.order.QuantitySectio
 import com.example.practicefirebase.activities.presentation.order.TimePickerItem
 import com.example.practicefirebase.activities.product.product_list.TopBar
 import com.example.practicefirebase.domain.CartModel
-import com.example.practicefirebase.domain.ProductModel
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -150,7 +144,7 @@ fun OrderFromCartScreen(
                 LineGrey()
                 ButtonSection(
                     title = "Order",
-                    onOrderClick = {
+                    onClick = {
                         val quantitiesMap = HashMap(productQuantities)
                         val intent = Intent(context, CheckoutFromCartActivity::class.java).apply {
                             putExtra("productList", ArrayList(cartItems))
@@ -159,6 +153,7 @@ fun OrderFromCartScreen(
                             putExtra("date", selectedDate)
                             putExtra("time", selectedTime)
                             putExtra("payment", selectedPayment)
+                            putExtra("totalPrice", totalPrice)
                         }
                         startActivity(context, intent, null)
                     }

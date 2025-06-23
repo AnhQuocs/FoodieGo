@@ -1,12 +1,13 @@
 package com.example.practicefirebase.activities.presentation.order_from_cart
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,12 +28,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.example.practicefirebase.R
 import com.example.practicefirebase.activities.presentation.checkout.CheckoutItemRow
@@ -49,6 +50,7 @@ class CheckoutFromCartActivity : AppCompatActivity() {
     private var date: String = ""
     private var time: String = ""
     private var payment: String = ""
+    private var totalPrice: Float = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +65,7 @@ class CheckoutFromCartActivity : AppCompatActivity() {
             date = intent.getStringExtra("date") ?: ""
             time = intent.getStringExtra("time") ?: ""
             payment = intent.getStringExtra("payment") ?: ""
+            totalPrice = intent.getFloatExtra("totalPrice", 0.0f)
 
             CheckoutFromCartScreen(
                 cartItems = cartItems,
@@ -71,7 +74,8 @@ class CheckoutFromCartActivity : AppCompatActivity() {
                 tableQuantity = tableQuantity,
                 date = date,
                 time = time,
-                payment = payment
+                payment = payment,
+                totalPrice = totalPrice
             )
         }
     }
@@ -86,7 +90,11 @@ fun CheckoutFromCartScreen(
     date: String,
     time: String,
     payment: String,
+    totalPrice: Float
 ) {
+    val context = LocalContext.current
+    val activity = context as? Activity
+
     Scaffold(
         topBar = {
             TopBar(
@@ -126,7 +134,23 @@ fun CheckoutFromCartScreen(
 
             item {
                 LineGrey()
-                ButtonSection(title = "Place order", onOrderClick = {})
+                TotalPriceFromCart(
+                    totalPrice = totalPrice,
+                    quantity = cartItems.size,
+                    tableQuantity = tableQuantity
+                )
+                LineGrey()
+                ButtonSection(title = "Place order", onClick = {
+                    val intent = Intent(context, OrderSuccessActivity::class.java)
+                        .putExtra("productSize", cartItems.size)
+                        .putExtra("totalPrice", totalPrice)
+                        .putExtra("date", date)
+                        .putExtra("time", time)
+                        .putExtra("tableQuantity", tableQuantity)
+
+                    startActivity(context, intent, null)
+                    activity?.finish()
+                })
             }
         }
     }
@@ -221,7 +245,9 @@ fun ProductItemFromCart(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Price: ${item.price}"
+                        text = "${item.price}",
+                        fontWeight = FontWeight.Medium,
+                        color = Color(0xFF388E3C)
                     )
                 }
 

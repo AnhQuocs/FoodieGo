@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -26,20 +28,36 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DashboardScreen()
+            val navController = rememberNavController()
+
+            val navigateTo = intent.getStringExtra("navigateTo")
+
+            DashboardScreen(navController = navController)
+
+            LaunchedEffect(navigateTo) {
+                if (navigateTo == "home") {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(0) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                }
+
+                if(navigateTo == "cart") {
+                    navController.navigate(Screen.Cart.route) {
+                        popUpTo(0) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                }
+            }
         }
     }
 }
 
 @Composable
-fun DashboardScreen() {
-
-    val viewmodel = MainViewModel()
-    val navController = rememberNavController()
-
+fun DashboardScreen(navController: NavHostController) {
     Scaffold(
         bottomBar = { MyBottomBar(navController = navController) }
-    ) {paddingValues ->
+    ) { paddingValues ->
         NavHost(
             navController = navController,
             startDestination = Screen.Home.route,

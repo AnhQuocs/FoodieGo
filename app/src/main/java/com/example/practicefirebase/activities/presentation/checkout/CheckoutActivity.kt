@@ -16,9 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import com.example.practicefirebase.R
-import com.example.practicefirebase.activities.presentation.order.OrderSuccessActivity
+import com.example.practicefirebase.activities.presentation.order_from_cart.OrderSuccessActivity
 import com.example.practicefirebase.activities.product.product_list.TopBar
 import com.example.practicefirebase.domain.ProductModel
 
@@ -69,6 +68,10 @@ fun Checkout(
     val context = LocalContext.current
     val activity = context as? Activity
 
+    val totalPrice = product.Price.replace("$", "").replace(",", ".").toDoubleOrNull() ?: 0.0
+
+    Log.d("ProductPrice", "$totalPrice")
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -92,9 +95,13 @@ fun Checkout(
                 date = date,
                 time = time,
                 onOrderClick = {
-                    val intent = Intent(context, OrderSuccessActivity::class.java).apply {
-                        putExtra("categoryId", product.CategoryId.toString())
-                    }
+                    val intent = Intent(context, OrderSuccessActivity::class.java)
+                        .putExtra("productSize", 1)
+                        .putExtra("totalPrice", totalPrice)
+                        .putExtra("date", date)
+                        .putExtra("time", time)
+                        .putExtra("tableQuantity", tableQuantity)
+
                     context.startActivity(intent)
                     activity?.finish()
                 }

@@ -403,11 +403,11 @@ fun TotalItem(
 
 @Composable
 fun ButtonSection(
-    onOrderClick: () -> Unit,
+    onClick: () -> Unit,
     title: String
 ) {
     Button(
-        onClick = { onOrderClick() },
+        onClick = { onClick() },
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
