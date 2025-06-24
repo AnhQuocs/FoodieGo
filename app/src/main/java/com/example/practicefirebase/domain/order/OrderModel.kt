@@ -10,5 +10,7 @@ data class OrderModel(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val createAt: LocalDateTime = LocalDateTime.now(),
     val totalPrice: Float,
-    val tableQuantity: Int
+    val tableQuantity: Int,
+    val mealDate: String,
+    val mealTime: String
 )

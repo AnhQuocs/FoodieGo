@@ -17,8 +17,8 @@ import com.example.practicefirebase.activities.Screen
 import com.example.practicefirebase.activities.presentation.cart.CartScreen
 import com.example.practicefirebase.activities.presentation.hisrory.HistoryScreen
 import com.example.practicefirebase.activities.presentation.home.HomeScreen
-import com.example.practicefirebase.activities.screen_test.NotificationScreen
-import com.example.practicefirebase.activities.screen_test.ProfileScreen
+import com.example.practicefirebase.activities.presentation.notification.NotificationScreen
+import com.example.practicefirebase.activities.presentation.profile.ProfileScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

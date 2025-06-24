@@ -1,5 +1,6 @@
 package com.example.practicefirebase.activities.presentation.hisrory
 
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -39,6 +41,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.practicefirebase.activities.presentation.order.LineGrey
@@ -51,6 +54,8 @@ fun HistoryScreen(
     orderViewModel: OrderViewModel = hiltViewModel()
 ) {
     val ordersWithItems by orderViewModel.ordersWithItems.collectAsState()
+
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         orderViewModel.loadAllOrdersWithItems()
@@ -225,7 +230,11 @@ fun HistoryScreen(
                                     .height(40.dp)
                                     .background(Color.White)
                                     .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
-                                    .clickable {  },
+                                    .clickable {
+                                        val intent = Intent(context, HistoryDetailActivity::class.java)
+                                            .putExtra("orderId", orderWithItems.order.id)
+                                        startActivity(context, intent, null)
+                                    },
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(

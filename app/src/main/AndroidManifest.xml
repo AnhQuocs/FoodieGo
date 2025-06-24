@@ -17,6 +17,9 @@
         android:theme="@style/Theme.PracticeFirebase"
         tools:targetApi="31">
         <activity
+            android:name=".activities.presentation.hisrory.HistoryDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.presentation.order_from_cart.OrderSuccessActivity"
             android:exported="false" />
         <activity

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -45,46 +46,40 @@ fun NearestListSection(
     list: SnapshotStateList<RestaurantModel>,
     showNearestLoading: Boolean
 ) {
-    Row(
-        modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .padding(top = 16.dp)
-    ) {
-        Text(
-            "Nearest Restaurants",
-            color = Color.Black,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.weight(1f)
-        )
-
-        Text(
-            "See all",
-            color = Color.Black,
-            textDecoration = TextDecoration.Underline,
-            fontSize = 16.sp
-        )
-    }
-
-    if(showNearestLoading) {
-        Box(
+    Column {
+        Row(
             modifier = Modifier
-                .height(200.dp)
-                .fillMaxWidth(),
-            contentAlignment = Alignment.Center
+                .padding(horizontal = 16.dp)
+                .padding(top = 16.dp, bottom = 8.dp)
         ) {
-            CircularProgressIndicator()
+            Text(
+                "Nearest Restaurants",
+                color = Color.Black,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.weight(1f)
+            )
+
+            Text(
+                "See all",
+                color = Color.Black,
+                textDecoration = TextDecoration.Underline,
+                fontSize = 16.sp
+            )
         }
-    } else {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(520.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp)
-        ) {
-            items(list.size) {index ->
-                NearestItems(item = list[index])
+
+        if(showNearestLoading) {
+            Box(
+                modifier = Modifier
+                    .height(200.dp)
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        } else {
+            list.forEach { index ->
+                NearestItems(item = index)
             }
         }
     }
@@ -97,9 +92,10 @@ fun NearestItems(item: RestaurantModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .padding(bottom = 8.dp)
             .background(Color.White, shape = RoundedCornerShape(10.dp))
             .wrapContentHeight()
-            .padding(8.dp)
             .clickable {
                 val intent = Intent(context, MapActivity::class.java).apply {
                     putExtra("object", item)
@@ -118,7 +114,7 @@ fun RestaurantDetail(item: RestaurantModel) {
     Column(
         modifier = Modifier
             .fillMaxHeight()
-            .padding(start = 8.dp),
+            .padding(vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
@@ -173,6 +169,7 @@ fun RestaurantImage(item: RestaurantModel) {
         model = item.ImagePath,
         contentDescription = null,
         modifier = Modifier
+            .padding(8.dp)
             .size(95.dp)
             .clip(RoundedCornerShape(10.dp))
             .background(colorResource(R.color.grey), shape = RoundedCornerShape(10.dp)),

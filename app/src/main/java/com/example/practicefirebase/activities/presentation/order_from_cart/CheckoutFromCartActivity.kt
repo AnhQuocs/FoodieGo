@@ -152,7 +152,9 @@ fun CheckoutFromCartScreen(
                 ButtonSection(title = "Place order", onClick = {
                     val order = OrderModel(
                         totalPrice = totalPrice,
-                        tableQuantity = tableQuantity
+                        tableQuantity = tableQuantity,
+                        mealDate = date,
+                        mealTime = time
                     )
 
                     val orderItems = cartItems.map { cartItem ->

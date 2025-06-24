@@ -108,7 +108,9 @@ fun Checkout(
                 onOrderClick = {
                     val order = OrderModel(
                         totalPrice = totalPrice,
-                        tableQuantity = tableQuantity
+                        tableQuantity = tableQuantity,
+                        mealTime = time,
+                        mealDate = date
                     )
 
                     val orderItems = OrderItemModel(
