@@ -151,7 +151,8 @@ fun CheckoutFromCartScreen(
                 LineGrey()
                 ButtonSection(title = "Place order", onClick = {
                     val order = OrderModel(
-                        totalPrice = totalPrice
+                        totalPrice = totalPrice,
+                        tableQuantity = tableQuantity
                     )
 
                     val orderItems = cartItems.map { cartItem ->
@@ -161,7 +162,8 @@ fun CheckoutFromCartScreen(
                             title = cartItem.title,
                             description = cartItem.description,
                             price = cartItem.price.replace("$", "").replace(",", ".").toFloatOrNull() ?: 0f,
-                            quantity = productQuantity[cartItem.id] ?: 1
+                            quantity = productQuantity[cartItem.productId] ?: 1,
+                            image = cartItem.image
                         )
                     }
 

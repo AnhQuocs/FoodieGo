@@ -24,4 +24,7 @@ class OrderRepository @Inject constructor(
 
     fun getOrderWithItems(orderId: String): Flow<OrderWithItems> =
         orderWithItemsDao.getOrderWithItems(orderId)
+
+    fun getAllOrdersWithItems(): Flow<List<OrderWithItems>> =
+        orderWithItemsDao.getAllOrdersWithItems()
 }

@@ -73,7 +73,7 @@ fun CartScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 16.dp, bottom = 80.dp)
+                .padding(bottom = 80.dp)
         ) {
             Text(
                 "My\nCart\uD83D\uDECD\uFE0F",
@@ -85,7 +85,7 @@ fun CartScreen(
 
             if (cartItems.isEmpty()) {
                 Text(
-                    "No orders yet!",
+                    "No products yet!",
                     fontSize = 24.sp,
                     textAlign = TextAlign.Center,
                     color = Color.Gray,

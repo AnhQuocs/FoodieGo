@@ -16,11 +16,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.practicefirebase.R
 import com.example.practicefirebase.activities.presentation.order_from_cart.OrderSuccessActivity
 import com.example.practicefirebase.activities.product.product_list.TopBar
+import com.example.practicefirebase.domain.order.OrderItemModel
+import com.example.practicefirebase.domain.order.OrderModel
 import com.example.practicefirebase.domain.product.ProductModel
+import com.example.practicefirebase.viewmodel.OrderViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CheckoutActivity : AppCompatActivity() {
     private lateinit var product: ProductModel
     private var productQuantity: Int = 0
@@ -65,6 +71,8 @@ fun Checkout(
     payment: String,
     onBackClick: () -> Unit
 ) {
+    val orderViewModel: OrderViewModel = hiltViewModel()
+
     val context = LocalContext.current
     val activity = context as? Activity
 
@@ -98,6 +106,23 @@ fun Checkout(
                 date = date,
                 time = time,
                 onOrderClick = {
+                    val order = OrderModel(
+                        totalPrice = totalPrice,
+                        tableQuantity = tableQuantity
+                    )
+
+                    val orderItems = OrderItemModel(
+                            orderId = order.id,
+                            productId = product.Id,
+                            title = product.Name,
+                            description = product.Description,
+                            price = product.Price.replace("$", "").replace(",", ".").toFloatOrNull() ?: 0f,
+                            quantity = 1,
+                            image = product.ImagePath
+                    )
+
+                    orderViewModel.insertOrderWithItems(order, listOf(orderItems))
+
                     val intent = Intent(context, OrderSuccessActivity::class.java)
                         .putExtra("productSize", 1)
                         .putExtra("totalPrice", totalPrice)

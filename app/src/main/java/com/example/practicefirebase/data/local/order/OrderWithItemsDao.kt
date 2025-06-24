@@ -11,4 +11,8 @@ interface OrderWithItemsDao {
     @Transaction
     @Query("SELECT * FROM orders WHERE id = :orderId")
     fun getOrderWithItems(orderId: String): Flow<OrderWithItems>
+
+    @Transaction
+    @Query("SELECT * FROM orders ORDER BY createAt DESC")
+    fun getAllOrdersWithItems(): Flow<List<OrderWithItems>>
 }

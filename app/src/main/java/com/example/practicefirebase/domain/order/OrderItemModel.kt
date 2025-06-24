@@ -12,5 +12,6 @@ data class OrderItemModel(
     val title: String,
     val description: String,
     val price: Float,
-    val quantity: Int
+    val quantity: Int,
+    val image: String
 )

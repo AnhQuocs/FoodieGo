@@ -22,6 +22,9 @@ class OrderViewModel @Inject constructor(
     private val _selectedOrder = MutableStateFlow<OrderWithItems?>(null)
     val selectedOrder: StateFlow<OrderWithItems?> = _selectedOrder.asStateFlow()
 
+    private val _ordersWithItems = MutableStateFlow<List<OrderWithItems>>(emptyList())
+    val ordersWithItems: StateFlow<List<OrderWithItems>> = _ordersWithItems.asStateFlow()
+
     fun insertOrderWithItems(order: OrderModel, items: List<OrderItemModel>) {
         viewModelScope.launch {
             repository.insertOrderWithItems(order, items)
@@ -40,6 +43,14 @@ class OrderViewModel @Inject constructor(
         viewModelScope.launch {
             repository.getOrderWithItems(orderId).collect {
                 _selectedOrder.value = it
+            }
+        }
+    }
+
+    fun loadAllOrdersWithItems() {
+        viewModelScope.launch {
+            repository.getAllOrdersWithItems().collect {
+                _ordersWithItems.value = it
             }
         }
     }

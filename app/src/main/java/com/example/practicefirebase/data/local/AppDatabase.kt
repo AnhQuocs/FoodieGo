@@ -13,7 +13,7 @@ import com.example.practicefirebase.domain.order.OrderItemModel
 import com.example.practicefirebase.domain.order.OrderModel
 import com.example.practicefirebase.domain.other.Converters
 
-@Database(entities = [CartModel::class, OrderModel::class, OrderItemModel::class], version = 4, exportSchema = false)
+@Database(entities = [CartModel::class, OrderModel::class, OrderItemModel::class], version = 5, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cartDao(): CartDao
