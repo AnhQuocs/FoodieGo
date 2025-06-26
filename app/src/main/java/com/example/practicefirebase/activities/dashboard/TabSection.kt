@@ -16,8 +16,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.PersonOutline
 import androidx.compose.runtime.Composable
@@ -34,7 +34,7 @@ import com.example.practicefirebase.domain.other.TabModel
 fun TabSection() {
     val tabs: List<TabModel> = listOf(
         TabModel(1, Icons.Default.FavoriteBorder, "Favorites"),
-        TabModel(2, Icons.Default.History, "History"),
+        TabModel(2, Icons.Default.Explore, "Discover "),
         TabModel(3, Icons.Default.PersonOutline, "Following"),
         TabModel(4, Icons.Default.List, "Order"),
     )
