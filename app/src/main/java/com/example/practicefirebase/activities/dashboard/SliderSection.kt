@@ -111,7 +111,6 @@ data class SliderItem(
 @Composable
 fun prepareSliderItem(): List<SliderItem> {
     val sliderItemList = arrayListOf<SliderItem>()
-
     sliderItemList.add(SliderItem(image = painterResource(R.drawable.food_slider), title = "Dessert"))
     sliderItemList.add(SliderItem(image = painterResource(R.drawable.cream_slider), title = "Ice Cream"))
     sliderItemList.add(SliderItem(image = painterResource(R.drawable.seafood_slider), title = "Seafood"))
