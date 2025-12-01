@@ -66,8 +66,8 @@ fun OrderFromCartScreen(
     var tableQuantity by remember { mutableStateOf(1) }
     var selectedPayment by remember { mutableStateOf("Visa *1234") }
 
-    val currentDate = LocalDate.now().format(DateTimeFormatter.ISO_DATE) // Format as yyyy-MM-dd
-    val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) // Format as HH:mm
+    val currentDate = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+    val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
     var selectedDate by remember { mutableStateOf(currentDate) }
     var selectedTime by remember { mutableStateOf(currentTime) }
 
